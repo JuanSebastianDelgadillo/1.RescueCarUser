@@ -110,10 +110,11 @@
 
                         <LinearLayout
                             android:orientation="horizontal"
-                            android:layout_width="250dp"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:weightSum="1"
-                            android:layout_marginLeft="10dp">
+                            android:layout_marginLeft="10dp"
+                            android:layout_weight="2">
 
                                 <TextView
                                     android:layout_width="wrap_content"
@@ -133,9 +134,10 @@
 
                         <LinearLayout
                             android:orientation="horizontal"
-                            android:layout_width="match_parent"
+                            android:layout_width="150dp"
                             android:layout_height="wrap_content"
-                            android:gravity="right">
+                            android:gravity="right"
+                            android:layout_weight="1">
 
                                 <ImageButton
                                     android:layout_width="wrap_content"

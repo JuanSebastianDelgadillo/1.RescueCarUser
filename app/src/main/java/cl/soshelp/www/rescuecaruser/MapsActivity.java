@@ -73,8 +73,6 @@ public class MapsActivity extends ConexionMysqlHelper implements OnMapReadyCallb
     ImageButton btAlerta;
     int pres=0, prop=0,servicioGPS=0, servicioInt=0;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,19 +81,6 @@ public class MapsActivity extends ConexionMysqlHelper implements OnMapReadyCallb
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-        //Escucha servicios
-            escuchaServicios();
-        //fin escucha servicios
-        //habilitacion de gps
-        locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
-        if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
-            AlertNoGps();
-        }
-        //Termino habilitacion gps
-        //CapturaIDDispositivo
-        id_mob = Settings.Secure.getString(this.getContentResolver(), Settings.Secure.ANDROID_ID);
-        new CargarDatos().execute("http://www.webinfo.cl/soshelp/del_alerta.php?id_mob="+id_mob);
-        //Termino carga de ID dispositivo
 
         //Creacion de boton y estado
         menufloat = (LinearLayout) findViewById(R.id.menufloat);
@@ -133,7 +118,7 @@ public class MapsActivity extends ConexionMysqlHelper implements OnMapReadyCallb
                 mainLinearLayout.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 390));
                 menu_grua.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 90));
                 pres = 1;
-                ic_neumatico.setEnabled(false); ic_neumatico.setBackgroundColor(Color.TRANSPARENT);
+                ic_neumatico.setEnabled(false);
                 ic_mecanico.setEnabled(false);
                 ic_policia.setEnabled(false);
                 ic_ambulancia.setEnabled(false);
@@ -157,6 +142,18 @@ public class MapsActivity extends ConexionMysqlHelper implements OnMapReadyCallb
         dir = (TextView) findViewById(R.id.tvDir);
         btAlerta = (ImageButton)findViewById(R.id.btAlerta);
         btAlerta.setEnabled(false);
+
+        //Escucha servicios
+        locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+            escuchaServicios();
+        //fin escucha servicios
+
+        //CapturaIDDispositivo
+        id_mob = Settings.Secure.getString(this.getContentResolver(), Settings.Secure.ANDROID_ID);
+        new CargarDatos().execute("http://www.webinfo.cl/soshelp/del_alerta.php?id_mob="+id_mob);
+        //Termino carga de ID dispositivo
+
+
     }
 
     @Override
@@ -436,6 +433,11 @@ public class MapsActivity extends ConexionMysqlHelper implements OnMapReadyCallb
             mainLinearLayout.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 100));
             menu_grua.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0));
             prop=0;
+            ic_neumatico.setEnabled(true);
+            ic_mecanico.setEnabled(true);
+            ic_policia.setEnabled(true);
+            ic_ambulancia.setEnabled(true);
+            ic_bomberos.setEnabled(true);
         }
     }
 
@@ -451,21 +453,23 @@ public class MapsActivity extends ConexionMysqlHelper implements OnMapReadyCallb
     }
 
     public void escuchaServicios(){
-        if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+
+                if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
             gps.setImageResource(R.drawable.gps_no);
-            Toast.makeText(getApplicationContext(),"¡¡ Tu GPS no funciona !!",Toast.LENGTH_SHORT).show();
             servicioGPS=0;
+            AlertNoGps();
         }else{
             gps.setImageResource(R.drawable.gps_si);
             servicioGPS=1;
         }
+
         ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         if (cm.getActiveNetworkInfo() != null){
             internet.setImageResource(R.drawable.int_si);
             servicioInt=1;
         }else{
             internet.setImageResource(R.drawable.int_no);
-            Toast.makeText(getApplicationContext(),"¡¡ Tu teléfono no esta conectado !!",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(),"¡¡ Tu teléfono no esta conectado a internet!!",Toast.LENGTH_SHORT).show();
             servicioInt=0;
         }
 

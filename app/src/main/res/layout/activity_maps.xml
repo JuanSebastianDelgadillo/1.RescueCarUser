@@ -1,0 +1,260 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:map="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:orientation="horizontal"
+            android:background="@color/colorPrimary">
+                <LinearLayout
+                    android:layout_width="220dp"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:paddingLeft="5dp">
+
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="220dp"
+                            android:layout_height="match_parent">
+
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:id="@+id/imageView3"
+                                    android:src="@mipmap/icon_rescue_car"
+                                    android:layout_marginTop="7dp" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Rescue Car User"
+                                    android:layout_marginTop="20dp"
+                                    android:layout_marginLeft="10dp"
+                                    android:textColor="@color/blanco"
+                                    android:textSize="20dp" />
+
+                        </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="right">
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:id="@+id/img_gps"
+                            android:src="@drawable/gps_no"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginLeft="20dp" />
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:id="@+id/img_internet"
+                            android:src="@drawable/int_no"
+                            android:layout_marginTop="15dp" />
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:id="@+id/img_vehiculo"
+                            android:src="@drawable/car"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp" />
+                </LinearLayout>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:background="#DDDDDD"></LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+                <fragment
+                    android:name="com.google.android.gms.maps.SupportMapFragment"
+                    android:id="@+id/map"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:background="#DDDDDD">
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="vertical"
+            android:background="@color/colorPrimary"
+            android:id="@+id/mainLinearLayout">
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp">
+
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="250dp"
+                            android:layout_height="wrap_content"
+                            android:weightSum="1"
+                            android:layout_marginLeft="10dp">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Su Dirección : "
+                                    android:id="@+id/textView2"
+                                    android:textColor="@color/abc_secondary_text_material_dark" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Desconocida"
+                                    android:id="@+id/tvDir"
+                                    android:textColor="@color/abc_secondary_text_material_dark" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="right">
+
+                                <ImageButton
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Alerta"
+                                    android:id="@+id/btAlerta"
+                                    android:onClick="alertar"
+                                    android:src="@drawable/bt_alerta"/>
+                        </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/menufloat"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="140dp"
+                    android:visibility="invisible"
+                    android:background="@color/colorPrimary"
+                    android:weightSum="1">
+
+
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                                <LinearLayout
+                                    android:orientation="horizontal"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="50dp">
+
+                                        <ImageView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:id="@+id/ic_grua"
+                                            android:src="@mipmap/ic_grua"
+                                            android:layout_marginLeft="40dp" />
+
+                                        <ImageView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:id="@+id/ic_neumatico"
+                                            android:src="@mipmap/ic_neumatico"
+                                            android:layout_marginLeft="40dp" />
+
+                                        <ImageView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:id="@+id/ic_mecanico"
+                                            android:src="@mipmap/ic_mecanico"
+                                            android:layout_marginLeft="40dp" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:orientation="horizontal"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:id="@+id/menu_grua"
+                                    android:background="#DDDDDD">
+
+                                        <ImageView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:id="@+id/g_moto"
+                                            android:src="@mipmap/ic_moto"
+                                            android:layout_marginLeft="40dp" />
+
+                                        <ImageView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:id="@+id/g_auto"
+                                            android:src="@mipmap/ic_auto"
+                                            android:layout_marginLeft="10dp" />
+
+                                        <ImageView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:id="@+id/g_camioneta"
+                                            android:src="@mipmap/ic_camioneta"
+                                            android:layout_marginLeft="10dp" />
+
+                                        <ImageView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:id="@+id/g_camion"
+                                            android:src="@mipmap/ic_camion"
+                                            android:layout_marginLeft="10dp" />
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:orientation="horizontal"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="50dp">
+
+                                        <ImageView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:id="@+id/ic_policia"
+                                            android:src="@mipmap/ic_policia"
+                                            android:layout_marginLeft="40dp" />
+
+                                        <ImageView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:id="@+id/ic_ambulancia"
+                                            android:src="@mipmap/ic_ambulancia"
+                                            android:layout_marginLeft="40dp" />
+
+                                        <ImageView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:id="@+id/ic_bomberos"
+                                            android:src="@mipmap/ic_bomberos"
+                                            android:layout_marginLeft="40dp" />
+                                </LinearLayout>
+                        </LinearLayout>
+                </LinearLayout>
+
+        </LinearLayout>
+
+</LinearLayout>
